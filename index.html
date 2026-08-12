@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Jayint — Software Engineering researcher working on LLM agents and reproducible repository environments." />
+    <title>Jayint · LLM Agents & Software Engineering</title>
+    <style>
+      :root {
+        --ink: #172235;
+        --muted: #5e6b80;
+        --paper: #f6f7fb;
+        --line: #dfe4ed;
+        --blue: #2268e3;
+        --blue-dark: #1749a4;
+        --navy: #101b31;
+        --card: rgba(255, 255, 255, 0.82);
+        --shadow: 0 18px 45px rgba(31, 58, 110, 0.1);
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--paper);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.6;
+      }
+
+      a { color: inherit; text-decoration: none; }
+      .shell { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 76px;
+      }
+      .brand { font-weight: 800; letter-spacing: -0.04em; font-size: 1.22rem; }
+      .brand span { color: var(--blue); }
+      nav { display: flex; gap: 24px; font-size: 0.93rem; color: var(--muted); }
+      nav a:hover { color: var(--blue); }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+        padding: 104px 0 90px;
+        background: var(--navy);
+        color: white;
+      }
+      .hero::before, .hero::after {
+        content: "";
+        position: absolute;
+        border-radius: 999px;
+        filter: blur(2px);
+        z-index: -1;
+      }
+      .hero::before {
+        width: 470px; height: 470px; right: -130px; top: -210px;
+        background: radial-gradient(circle, #3a83ff 0%, rgba(58, 131, 255, 0) 70%);
+        opacity: 0.56;
+      }
+      .hero::after {
+        width: 360px; height: 360px; left: 20%; bottom: -280px;
+        background: radial-gradient(circle, #2dc3ae 0%, rgba(45, 195, 174, 0) 70%);
+        opacity: 0.28;
+      }
+      .eyebrow {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        padding: 6px 11px;
+        border: 1px solid rgba(255,255,255,.2);
+        border-radius: 999px;
+        color: #cbdcff;
+        font-size: .8rem;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+      }
+      .dot { width: 7px; height: 7px; background: #51d4b8; border-radius: 50%; }
+      h1 {
+        max-width: 770px;
+        margin: 22px 0 18px;
+        font-size: clamp(2.65rem, 7vw, 5.3rem);
+        line-height: .98;
+        letter-spacing: -.065em;
+      }
+      .hero p { max-width: 650px; margin: 0; color: #b7c7e3; font-size: clamp(1.05rem, 2vw, 1.26rem); }
+      .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+      .button {
+        display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+        min-height: 46px; padding: 0 19px; border-radius: 9px; font-weight: 700; font-size: .93rem;
+        transition: transform .18s ease, background .18s ease;
+      }
+      .button:hover { transform: translateY(-2px); }
+      .button.primary { background: white; color: var(--blue-dark); }
+      .button.secondary { border: 1px solid rgba(255,255,255,.32); color: white; }
+
+      main { padding: 85px 0 52px; }
+      section { margin-bottom: 92px; }
+      .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
+      h2 { margin: 0; font-size: clamp(1.85rem, 4vw, 2.55rem); letter-spacing: -.05em; line-height: 1.08; }
+      .section-head p { max-width: 450px; margin: 0; color: var(--muted); }
+      .intro {
+        display: grid;
+        grid-template-columns: .9fr 1.1fr;
+        gap: 50px;
+        padding: 38px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: var(--card);
+        box-shadow: var(--shadow);
+      }
+      .intro h2 { font-size: clamp(2rem, 4vw, 3rem); }
+      .intro p { margin: 0; color: var(--muted); font-size: 1.08rem; }
+      .tags { display: flex; flex-wrap: wrap; gap: 9px; align-content: center; }
+      .tag { padding: 7px 11px; color: var(--blue-dark); background: #eaf1ff; border-radius: 7px; font-size: .86rem; font-weight: 700; }
+
+      .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+      .project {
+        display: flex; flex-direction: column; min-height: 270px; padding: 27px;
+        border: 1px solid var(--line); border-radius: 16px; background: var(--card);
+        transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      }
+      .project:hover { transform: translateY(-5px); border-color: #b4caff; box-shadow: var(--shadow); }
+      .project-label { color: var(--blue); font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+      .project h3 { margin: 13px 0 10px; font-size: 1.35rem; letter-spacing: -.035em; }
+      .project p { margin: 0; color: var(--muted); font-size: .95rem; }
+      .project .link { margin-top: auto; padding-top: 23px; color: var(--blue-dark); font-size: .9rem; font-weight: 800; }
+      .project .link::after { content: " ↗"; }
+
+      .focus { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+      .focus-item { padding: 26px; border-top: 3px solid var(--blue); background: white; border-radius: 0 0 14px 14px; }
+      .focus-item:nth-child(2) { border-color: #22a98e; }
+      .focus-item:nth-child(3) { border-color: #785fe4; }
+      .focus-num { display: block; color: #99a4b6; font-weight: 800; font-size: .78rem; letter-spacing: .1em; }
+      .focus h3 { margin: 10px 0 9px; font-size: 1.18rem; letter-spacing: -.03em; }
+      .focus p { margin: 0; color: var(--muted); font-size: .93rem; }
+
+      .contact {
+        display: flex; align-items: center; justify-content: space-between; gap: 24px;
+        padding: 39px; border-radius: 18px; background: linear-gradient(115deg, #2268e3, #193c84); color: white;
+      }
+      .contact h2 { font-size: clamp(1.8rem, 4vw, 2.7rem); }
+      .contact p { margin: 8px 0 0; color: #d5e2ff; }
+      .contact .button { flex-shrink: 0; background: white; color: var(--blue-dark); }
+      footer { padding: 0 0 34px; color: #7c8798; font-size: .85rem; }
+
+      @media (max-width: 760px) {
+        .shell { width: min(100% - 32px, 1120px); }
+        nav { display: none; }
+        .hero { padding: 82px 0 72px; }
+        main { padding-top: 58px; }
+        section { margin-bottom: 65px; }
+        .section-head, .contact { align-items: flex-start; flex-direction: column; }
+        .intro, .project-grid, .focus { grid-template-columns: 1fr; }
+        .intro { gap: 26px; padding: 27px; }
+        .project { min-height: 220px; }
+        .contact { padding: 29px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="shell topbar">
+      <a class="brand" href="#top">jay<span>int</span>.</a>
+      <nav aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#focus">Focus</a>
+        <a href="https://github.com/Jayint" target="_blank" rel="noreferrer">GitHub ↗</a>
+      </nav>
+    </header>
+
+    <section class="hero" id="top">
+      <div class="shell">
+        <div class="eyebrow"><span class="dot"></span> Software Engineering Research</div>
+        <h1>Building reliable<br />agents for real code.</h1>
+        <p>I am Jayint, a Software Engineering graduate researcher exploring how LLM agents can understand, configure, and execute repository environments.</p>
+        <div class="actions">
+          <a class="button primary" href="#projects">Explore projects</a>
+          <a class="button secondary" href="https://github.com/Jayint" target="_blank" rel="noreferrer">View GitHub ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <main class="shell">
+      <section class="intro" id="about">
+        <h2>From repository structure to reproducible execution.</h2>
+        <div>
+          <p>My work sits at the intersection of LLM agents and software engineering. I am especially interested in turning the messy, implicit requirements of real repositories into dependable and reproducible development environments.</p>
+          <div class="tags" aria-label="Research interests" style="margin-top: 24px;">
+            <span class="tag">LLM Agents</span>
+            <span class="tag">Repository Analysis</span>
+            <span class="tag">Environment Construction</span>
+            <span class="tag">Reproducibility</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="section-head">
+          <h2>Selected projects</h2>
+          <p>Open-source work on agents, repository environments, and practical developer tooling.</p>
+        </div>
+        <div class="project-grid">
+          <a class="project" href="https://github.com/Jayint/Graph2Env" target="_blank" rel="noreferrer">
+            <span class="project-label">Environment reasoning</span>
+            <h3>Graph2Env</h3>
+            <p>Exploring graph-guided reasoning for constructing runnable repository environments.</p>
+            <span class="link">Open repository</span>
+          </a>
+          <a class="project" href="https://github.com/Jayint/Repo2Run" target="_blank" rel="noreferrer">
+            <span class="project-label">LLM agent</span>
+            <h3>Repo2Run</h3>
+            <p>An agent-oriented approach to automating environment configuration for Python repositories.</p>
+            <span class="link">Open repository</span>
+          </a>
+          <a class="project" href="https://github.com/Jayint/Jayint-repo" target="_blank" rel="noreferrer">
+            <span class="project-label">Research system</span>
+            <h3>Jayint-repo</h3>
+            <p>Experiments and infrastructure for reliable repository setup and execution workflows.</p>
+            <span class="link">Open repository</span>
+          </a>
+        </div>
+      </section>
+
+      <section id="focus">
+        <div class="section-head">
+          <h2>Research focus</h2>
+          <p>A practical path from codebase evidence to working software environments.</p>
+        </div>
+        <div class="focus">
+          <article class="focus-item">
+            <span class="focus-num">01</span>
+            <h3>Agentic reasoning</h3>
+            <p>Helping language-model agents plan, act, and recover when operating in complex software repositories.</p>
+          </article>
+          <article class="focus-item">
+            <span class="focus-num">02</span>
+            <h3>Environment synthesis</h3>
+            <p>Inferring dependencies and setup procedures from repository structure, source code, and execution feedback.</p>
+          </article>
+          <article class="focus-item">
+            <span class="focus-num">03</span>
+            <h3>Reliable evaluation</h3>
+            <p>Measuring whether an environment is not only constructed, but also independently reproducible.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact">
+        <div>
+          <h2>Let’s build dependable tools.</h2>
+          <p>Find my projects, experiments, and latest work on GitHub.</p>
+        </div>
+        <a class="button" href="https://github.com/Jayint" target="_blank" rel="noreferrer">@Jayint on GitHub ↗</a>
+      </section>
+    </main>
+
+    <footer class="shell">© 2026 Jayint · Built for the open web.</footer>
+  </body>
+</html>
