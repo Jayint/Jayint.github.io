@@ -25,7 +25,7 @@ author:
   # Biographic information
   avatar           : "https://github.com/Jayint.png?size=400"
   name             : "Jayint"
-  pronouns         : "he"  
+  pronouns         :  #"he"  
   bio              : "Graduate student in Software Engineering."
   location         : "Chongqing, China"
   employer         :
