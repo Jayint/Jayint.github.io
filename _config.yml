@@ -25,12 +25,12 @@ author:
   # Biographic information
   avatar           : "https://github.com/Jayint.png?size=400"
   name             : "Jayint"
-  pronouns         : # example: "she/her"  
+  pronouns         : "he"  
   bio              : "Graduate student in Software Engineering."
-  location         :
+  location         : "Chongqing, China"
   employer         :
   uri              : # URL
-  email            :
+  email            : "panjayint@gmail.com"
 
   # Academic websites
   academia         : # URL
